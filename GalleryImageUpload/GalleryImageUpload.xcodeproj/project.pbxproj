@@ -10,7 +10,6 @@
 		41B7147C44AC4955D562B05A /* Pods_GalleryImageUploadTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE097549D0B4EAC7D5F20434 /* Pods_GalleryImageUploadTests.framework */; };
 		7C4498E822E0530700D56EC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C4498E722E0530700D56EC1 /* GoogleService-Info.plist */; };
 		7C4498F022E0568D00D56EC1 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4498EF22E0568D00D56EC1 /* FirebaseManager.swift */; };
-		7C4498F222E056A700D56EC1 /* ImageEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4498F122E056A700D56EC1 /* ImageEditManager.swift */; };
 		7C4498F622E0570800D56EC1 /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4498F522E0570800D56EC1 /* ImageGalleryViewController.swift */; };
 		7C4498F822E0588C00D56EC1 /* ImageGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4498F722E0588C00D56EC1 /* ImageGalleryPresenter.swift */; };
 		7C4498FE22E0656600D56EC1 /* ImageGalleryPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4498FD22E0656600D56EC1 /* ImageGalleryPresenterProtocol.swift */; };
@@ -47,7 +46,6 @@
 		30A465EDCC82C982474A59F4 /* Pods-GalleryImageUpload.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryImageUpload.release.xcconfig"; path = "Target Support Files/Pods-GalleryImageUpload/Pods-GalleryImageUpload.release.xcconfig"; sourceTree = "<group>"; };
 		7C4498E722E0530700D56EC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7C4498EF22E0568D00D56EC1 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		7C4498F122E056A700D56EC1 /* ImageEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditManager.swift; sourceTree = "<group>"; };
 		7C4498F522E0570800D56EC1 /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewController.swift; sourceTree = "<group>"; };
 		7C4498F722E0588C00D56EC1 /* ImageGalleryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryPresenter.swift; sourceTree = "<group>"; };
 		7C4498FD22E0656600D56EC1 /* ImageGalleryPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryPresenterProtocol.swift; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				7C4498EF22E0568D00D56EC1 /* FirebaseManager.swift */,
-				7C4498F122E056A700D56EC1 /* ImageEditManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -506,7 +503,6 @@
 			files = (
 				7C4498F022E0568D00D56EC1 /* FirebaseManager.swift in Sources */,
 				7C4498F822E0588C00D56EC1 /* ImageGalleryPresenter.swift in Sources */,
-				7C4498F222E056A700D56EC1 /* ImageEditManager.swift in Sources */,
 				7C44990022E066A000D56EC1 /* ImagePicker.swift in Sources */,
 				7C44990422E071D300D56EC1 /* Text.swift in Sources */,
 				7C4498FE22E0656600D56EC1 /* ImageGalleryPresenterProtocol.swift in Sources */,
