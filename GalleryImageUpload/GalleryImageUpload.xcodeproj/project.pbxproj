@@ -21,6 +21,10 @@
 		7C5D4B5C22DDE5A00006860C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C5D4B5A22DDE5A00006860C /* LaunchScreen.storyboard */; };
 		7C5D4B6722DDE5A00006860C /* GalleryImageUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D4B6622DDE5A00006860C /* GalleryImageUploadTests.swift */; };
 		7C5D4B7222DDE5A00006860C /* GalleryImageUploadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D4B7122DDE5A00006860C /* GalleryImageUploadUITests.swift */; };
+		7C66FE7B22E1D6CA00CD0FE2 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66FE7A22E1D6CA00CD0FE2 /* ImageModel.swift */; };
+		7C66FE7D22E1E20C00CD0FE2 /* ImageGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C66FE7C22E1E20C00CD0FE2 /* ImageGalleryCell.xib */; };
+		7C66FE7F22E1E23500CD0FE2 /* ImageGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66FE7E22E1E23500CD0FE2 /* ImageGalleryCell.swift */; };
+		7C66FE8122E1E75200CD0FE2 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C66FE8022E1E75200CD0FE2 /* CacheManager.swift */; };
 		AA65D4FFBD0B4245CABDD578 /* Pods_GalleryImageUploadUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBEFC24DDF8D5100AB78614 /* Pods_GalleryImageUploadUITests.framework */; };
 		B59E66E283550789790924CB /* Pods_GalleryImageUpload.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1527E31AF36BF2759BF4473 /* Pods_GalleryImageUpload.framework */; };
 /* End PBXBuildFile section */
@@ -63,6 +67,10 @@
 		7C5D4B6D22DDE5A00006860C /* GalleryImageUploadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GalleryImageUploadUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C5D4B7122DDE5A00006860C /* GalleryImageUploadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImageUploadUITests.swift; sourceTree = "<group>"; };
 		7C5D4B7322DDE5A00006860C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C66FE7A22E1D6CA00CD0FE2 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		7C66FE7C22E1E20C00CD0FE2 /* ImageGalleryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageGalleryCell.xib; sourceTree = "<group>"; };
+		7C66FE7E22E1E23500CD0FE2 /* ImageGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryCell.swift; sourceTree = "<group>"; };
+		7C66FE8022E1E75200CD0FE2 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		7FCA15A7B0CFF3B464595594 /* Pods-GalleryImageUpload.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryImageUpload.debug.xcconfig"; path = "Target Support Files/Pods-GalleryImageUpload/Pods-GalleryImageUpload.debug.xcconfig"; sourceTree = "<group>"; };
 		8166B9BB2D9E02DB7CABD912 /* Pods-GalleryImageUploadUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryImageUploadUITests.debug.xcconfig"; path = "Target Support Files/Pods-GalleryImageUploadUITests/Pods-GalleryImageUploadUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8DB900C3D139B055FA020F8A /* Pods-GalleryImageUploadTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GalleryImageUploadTests.debug.xcconfig"; path = "Target Support Files/Pods-GalleryImageUploadTests/Pods-GalleryImageUploadTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,7 +125,6 @@
 		7C4498E922E0557A00D56EC1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				7C4498F422E056D200D56EC1 /* ImageUpload */,
 				7C4498F322E056C100D56EC1 /* ImageGallery */,
 			);
 			path = Modules;
@@ -127,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				7C4498EF22E0568D00D56EC1 /* FirebaseManager.swift */,
+				7C66FE8022E1E75200CD0FE2 /* CacheManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -163,6 +171,7 @@
 		7C4498EE22E055D100D56EC1 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				7C66FE7C22E1E20C00CD0FE2 /* ImageGalleryCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -177,16 +186,10 @@
 			path = ImageGallery;
 			sourceTree = "<group>";
 		};
-		7C4498F422E056D200D56EC1 /* ImageUpload */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ImageUpload;
-			sourceTree = "<group>";
-		};
 		7C4498F922E058C000D56EC1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C66FE7A22E1D6CA00CD0FE2 /* ImageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 		7C4498FC22E05F0000D56EC1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				7C66FE7E22E1E23500CD0FE2 /* ImageGalleryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -387,6 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C66FE7D22E1E20C00CD0FE2 /* ImageGalleryCell.xib in Resources */,
 				7C5D4B5C22DDE5A00006860C /* LaunchScreen.storyboard in Resources */,
 				7C4498E822E0530700D56EC1 /* GoogleService-Info.plist in Resources */,
 				7C5D4B5922DDE5A00006860C /* Assets.xcassets in Resources */,
@@ -507,7 +512,10 @@
 				7C44990422E071D300D56EC1 /* Text.swift in Sources */,
 				7C4498FE22E0656600D56EC1 /* ImageGalleryPresenterProtocol.swift in Sources */,
 				7C4498F622E0570800D56EC1 /* ImageGalleryViewController.swift in Sources */,
+				7C66FE8122E1E75200CD0FE2 /* CacheManager.swift in Sources */,
 				7C5D4B5222DDE59E0006860C /* AppDelegate.swift in Sources */,
+				7C66FE7B22E1D6CA00CD0FE2 /* ImageModel.swift in Sources */,
+				7C66FE7F22E1E23500CD0FE2 /* ImageGalleryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

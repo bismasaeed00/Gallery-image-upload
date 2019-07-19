@@ -10,10 +10,12 @@ import Foundation
 import UIKit
 import Firebase
 
-class ImageGalleryPresenter {
+class ImageGalleryPresenter : NSObject{
     var imagePicker: ImagePicker?
     var viewController: ImageGalleryViewController?
     let firebaseManager: FirebaseManager?
+    
+    var imageList: [ImageModel] = []
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -25,15 +27,38 @@ class ImageGalleryPresenter {
         self.viewController = viewController
         // Injecting storage and database references to FirebaseManager
         self.firebaseManager = FirebaseManager.init(storageReference: Storage.storage().reference(), databaseReference: Database.database().reference())
+        super.init()
         self.imagePicker = ImagePicker(presentationController: self.viewController, delegate: self)
+        
         fetchGalleryData()
     }
     
     func fetchGalleryData() {
-        firebaseManager?.fetchAllImages()
+        firebaseManager?.fetchAllImages(completion: { imageModel, error in
+            
+            guard let image = imageModel else { return }
+            self.imageList.append(image)
+//            self.imageList.sort(by: { (modelOne, modelTwo) -> Bool in
+//                return modelOne.createdAt > modelTwo.createdAt
+//            })
+            self.viewController?.reloadCollctionView()
+        })
     }
     private func storageTimeStamp() -> String{
-        return "images/" + dateFormatter.string(from: Date()) + ".jpg"
+        return dateFormatter.string(from: Date())
+    }
+}
+
+extension ImageGalleryPresenter: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imageList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let imageCell = collectionView.dequeueReusableCell(withReuseIdentifier: Text.CellIdentifiers.imageGalleryCell, for: indexPath) as! ImageGalleryCell
+        imageCell.setupCellData(model: imageList[indexPath.item])
+        return imageCell
     }
 }
 
@@ -47,7 +72,9 @@ extension ImageGalleryPresenter: ImageGalleryPresenterProtocol{
 extension ImageGalleryPresenter: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
         guard let imageData = image?.jpegData(compressionQuality: 0.5) else { return }
-        firebaseManager?.uploadDataToFirebase(dataToUpload: imageData, uploadPath: storageTimeStamp(), progress: { progress in
+        let timeStamp = storageTimeStamp()
+        let uplaodPath = Text.Image.imageFolderName + timeStamp + Text.Image.imageExtension
+        firebaseManager?.uploadDataToFirebase(dataToUpload: imageData, uploadPath: uplaodPath, timeStamp: timeStamp, progress: { progress in
             //TODO: handle progress
             
         }, completion: { success, error  in

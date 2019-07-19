@@ -15,4 +15,15 @@ enum Text {
         static let title = "Select"
         static let message = "Please select source of the photo."
     }
+    enum CellIdentifiers {
+        static let imageGalleryCell = "ImageGalleryCell"
+    }
+    enum Image {
+        static let imageFolderName = "images/"
+        static let imageExtension = ".jpg"
+    }
+    enum Database {
+        static let imageUrl = "imageUrl"
+        static let imageTimeStamp = "createdAt"
+    }
 }

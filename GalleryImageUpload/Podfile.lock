@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.8.2)
+  - AlamofireImage (3.5.2):
+    - Alamofire (~> 4.8)
   - Firebase/CoreOnly (6.2.0):
     - FirebaseCore (= 6.0.2)
   - Firebase/Database (6.2.0):
@@ -26,11 +29,14 @@ PODS:
   - leveldb-library (1.20)
 
 DEPENDENCIES:
+  - AlamofireImage
   - Firebase/Database
   - Firebase/Storage
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
     - Firebase
     - FirebaseAuthInterop
     - FirebaseCore
@@ -41,6 +47,8 @@ SPEC REPOS:
     - leveldb-library
 
 SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   Firebase: 5965bac23e7fcb5fa6d926ed429c9ecef8a2014e
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: b0f0262acebfa540e5f97b3832dbb13186980822
@@ -50,6 +58,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
 
-PODFILE CHECKSUM: 7fb82b06185d3d70d5b43efc8b22ff5f40fe223b
+PODFILE CHECKSUM: 000c9aa35c5a8115617a0719adfcbc4d2b60fc90
 
 COCOAPODS: 1.7.2

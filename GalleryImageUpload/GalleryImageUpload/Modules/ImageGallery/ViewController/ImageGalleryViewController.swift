@@ -16,6 +16,27 @@ class ImageGalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = ImageGalleryPresenter(viewController: self)
+        galleryCollectionView?.dataSource = presenter
+        galleryCollectionView?.register(UINib(nibName: Text.CellIdentifiers.imageGalleryCell,
+                                              bundle: nil),
+                                        forCellWithReuseIdentifier: Text.CellIdentifiers.imageGalleryCell)
+        setCollectionViewLayout()
+    }
+    
+    private func setCollectionViewLayout() {
+        
+        // Setting cell size dynamically to present one cell in each row
+        let layout = galleryCollectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        let screenWidth = UIScreen.main.bounds.size.width
+        let paddingSpace = layout.minimumInteritemSpacing
+        let cellHeight: CGFloat = 150
+        let useableWidth = screenWidth - paddingSpace
+        let cellSize = CGSize(width: useableWidth, height: cellHeight)
+        
+        layout.itemSize = cellSize
+    }
+    func reloadCollctionView(){
+        galleryCollectionView?.reloadData()
     }
     
     //MARK: User Actions

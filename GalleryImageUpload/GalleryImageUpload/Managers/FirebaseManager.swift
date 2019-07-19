@@ -9,8 +9,11 @@
 import Foundation
 import Firebase
 
-typealias Completion = (Bool, Error?) -> Void
+typealias CompletionSuccess = (Bool, Error?) -> Void
+typealias CompletionSuccessWithImage = (ImageModel?, Error?) -> Void
 typealias Progress = (Double?) -> Void
+
+
 class FirebaseManager {
     
     let storageReference : StorageReference
@@ -22,19 +25,51 @@ class FirebaseManager {
         self.databaseReference = databaseReference
     }
     
-    func fetchAllImages() {
-        let dbRef = storageReference.child("images")
-        dbRef.downloadURL { url, error in
-            if let error = error {
-                // Handle any errors
-            } else {
-                // Get the download URL for 'images/stars.jpg'
+    private func getChildNameForImages() -> String{
+        return "Images/"
+    }
+    //MARK: Read data
+    func fetchAllImages(completion: @escaping CompletionSuccessWithImage) {
+        let nodeReference = databaseReference.child(getChildNameForImages())
+        // Getting all the existing data
+//        nodeReference.observeSingleEvent(of: .value, with: {snapshot in
+//
+//            guard snapshot.exists() else { return }
+//
+//            for child in snapshot.children{
+//                self.getImageDateFromChild(child: child, completion: completion)
+//            }
+//        })
+        
+        // adding observer for new entries in database
+        nodeReference.observe(.childAdded, with: { (snapshot) -> Void in
+            self.getImageDateFromChild(child: snapshot, completion: completion)
+        })
+    }
+    
+    private func getImageDateFromChild(child: Any, completion: @escaping CompletionSuccessWithImage) {
+        
+        guard let childSnap = child as? DataSnapshot, let childValue = childSnap.value as? [String:String], let urlString = childValue[Text.Database.imageUrl], let timeStamp = childValue[Text.Database.imageTimeStamp] else { return }
+        
+        self.downloadUrlForReference(urlPath: urlString,timeStamp: timeStamp, completion: completion)
+    }
+    
+    private func downloadUrlForReference(urlPath: String, timeStamp: String, completion: @escaping CompletionSuccessWithImage) {
+        
+        let urlReference = Storage.storage().reference(forURL: urlPath)
+        urlReference.downloadURL { url, error in
+            guard let imageUrl = url else {
+                completion(nil, error)
+                return
             }
+            let imageModel = ImageModel(imageUrl: imageUrl, createdAt: timeStamp)
+            completion(imageModel, error)
         }
     }
     
     //MARK: Write Data
-    func uploadDataToFirebase(dataToUpload: Data, uploadPath: String, progress: @escaping Progress, completion: @escaping Completion) {
+    func uploadDataToFirebase(dataToUpload: Data, uploadPath: String, timeStamp: String, progress: @escaping Progress, completion: @escaping CompletionSuccess) {
+        
         let imageRef = storageReference.child(uploadPath)
         let uploadTask = imageRef.putData(dataToUpload, metadata: nil, completion: { (metadata, error) in
             guard metadata != nil else {
@@ -44,7 +79,7 @@ class FirebaseManager {
                 guard let downloadURL = url else {
                     return completion(false ,error)
                 }
-                self.saveDataUrlToFirebase(urlString: downloadURL.absoluteString, completion: completion)
+                self.saveDataUrlToFirebase(urlString: downloadURL.absoluteString, timeStamp: timeStamp, completion: completion)
             }
             return completion(true ,nil)
         })
@@ -53,9 +88,11 @@ class FirebaseManager {
         }
     }
     
-    func saveDataUrlToFirebase(urlString: String, completion: @escaping Completion) {
-        let dbRef = self.databaseReference.child("Images/")
-        dbRef.setValue(urlString, withCompletionBlock: {error, databaseRef in
+    func saveDataUrlToFirebase(urlString: String, timeStamp: String, completion: @escaping CompletionSuccess) {
+        
+        let uploadDictionary: [String: String] = [Text.Database.imageTimeStamp: timeStamp, Text.Database.imageUrl: urlString]
+        let newChildRef = self.databaseReference.child(getChildNameForImages()).childByAutoId()
+        newChildRef.setValue(uploadDictionary, withCompletionBlock: {error, databaseRef in
             completion(error != nil ,error)
         })
     }
