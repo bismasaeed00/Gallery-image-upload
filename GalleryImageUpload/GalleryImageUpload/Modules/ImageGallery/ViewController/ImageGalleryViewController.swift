@@ -44,10 +44,3 @@ class ImageGalleryViewController: UIViewController {
         presenter?.addNewImagePressed()
     }
 }
-
-extension ImageGalleryViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        //TODO: open full image
-    }
-}

@@ -33,9 +33,8 @@ class ImageGalleryCell: UICollectionViewCell {
     
     func setupCellData(model: ImageModel) {
         loadingMode(loadingMode: true)
-        CacheManager().downloadImage(url: model.imageUrl) { (image, error) in
-            self.imageView?.image = image
+        self.imageView?.loadImageCacheWithUrlString(urlString: model.imageUrl.absoluteString, completion: { success, error in
             self.loadingMode(loadingMode: false)
-        }
+        })
     }
 }

@@ -9,9 +9,9 @@
 import Foundation
 struct ImageModel {
     var imageUrl: URL
-    var createdAt: String
+    var createdAt: Date
     
-    init(imageUrl: URL, createdAt: String) {
+    init(imageUrl: URL, createdAt: Date) {
         self.imageUrl = imageUrl
         self.createdAt = createdAt
     }

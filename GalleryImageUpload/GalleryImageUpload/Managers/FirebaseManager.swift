@@ -16,32 +16,34 @@ typealias Progress = (Double?) -> Void
 
 class FirebaseManager {
     
-    let storageReference : StorageReference
+    let storage : Storage
     let databaseReference: DatabaseReference
-    var data = Data()
+
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy-HH-mm-ss"
+        return formatter
+    }
     
-    init(storageReference: StorageReference, databaseReference: DatabaseReference) {
-        self.storageReference = storageReference
+    init(storage: Storage, databaseReference: DatabaseReference) {
+        self.storage = storage
         self.databaseReference = databaseReference
     }
     
     private func getChildNameForImages() -> String{
         return "Images/"
     }
+    
+    func dateToTimeStampString(date: Date) -> String{
+        return dateFormatter.string(from: date)
+    }
+    
+    func timeStampToDate(string: String) -> Date?{
+        return dateFormatter.date(from: string)
+    }
     //MARK: Read data
     func fetchAllImages(completion: @escaping CompletionSuccessWithImage) {
         let nodeReference = databaseReference.child(getChildNameForImages())
-        // Getting all the existing data
-//        nodeReference.observeSingleEvent(of: .value, with: {snapshot in
-//
-//            guard snapshot.exists() else { return }
-//
-//            for child in snapshot.children{
-//                self.getImageDateFromChild(child: child, completion: completion)
-//            }
-//        })
-        
-        // adding observer for new entries in database
         nodeReference.observe(.childAdded, with: { (snapshot) -> Void in
             self.getImageDateFromChild(child: snapshot, completion: completion)
         })
@@ -56,13 +58,13 @@ class FirebaseManager {
     
     private func downloadUrlForReference(urlPath: String, timeStamp: String, completion: @escaping CompletionSuccessWithImage) {
         
-        let urlReference = Storage.storage().reference(forURL: urlPath)
+        let urlReference = storage.reference(forURL: urlPath)
         urlReference.downloadURL { url, error in
-            guard let imageUrl = url else {
+            guard let imageUrl = url, let createdAt = self.timeStampToDate(string: timeStamp) else {
                 completion(nil, error)
                 return
             }
-            let imageModel = ImageModel(imageUrl: imageUrl, createdAt: timeStamp)
+            let imageModel = ImageModel(imageUrl: imageUrl, createdAt: createdAt)
             completion(imageModel, error)
         }
     }
@@ -70,7 +72,7 @@ class FirebaseManager {
     //MARK: Write Data
     func uploadDataToFirebase(dataToUpload: Data, uploadPath: String, timeStamp: String, progress: @escaping Progress, completion: @escaping CompletionSuccess) {
         
-        let imageRef = storageReference.child(uploadPath)
+        let imageRef = storage.reference().child(uploadPath)
         let uploadTask = imageRef.putData(dataToUpload, metadata: nil, completion: { (metadata, error) in
             guard metadata != nil else {
                 return completion(false ,error)
