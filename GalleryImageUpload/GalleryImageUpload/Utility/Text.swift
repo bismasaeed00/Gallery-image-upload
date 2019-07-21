@@ -7,6 +7,7 @@
 //
 
 import Foundation
+/// All the static texts in the application can be setup in the relevent enum.
 enum Text {
     enum Alert {
         static let cancelBtnTitle = "Cancel"

@@ -11,6 +11,12 @@ struct ImageModel {
     var imageUrl: URL
     var createdAt: Date
     
+    /**
+     Initialize new ImageModel.
+     - Parameters:
+        - imageUrl: url to the image storage
+        - createdAt: uploading date of the image
+     */
     init(imageUrl: URL, createdAt: Date) {
         self.imageUrl = imageUrl
         self.createdAt = createdAt

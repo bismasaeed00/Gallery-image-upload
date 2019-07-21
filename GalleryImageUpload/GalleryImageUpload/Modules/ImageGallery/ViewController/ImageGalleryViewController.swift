@@ -10,6 +10,7 @@ import UIKit
 
 class ImageGalleryViewController: UIViewController {
 
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet private weak var galleryCollectionView: UICollectionView?
     var presenter: ImageGalleryPresenter?
     

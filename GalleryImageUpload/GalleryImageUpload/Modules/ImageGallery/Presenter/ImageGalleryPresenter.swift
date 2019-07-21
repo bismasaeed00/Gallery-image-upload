@@ -68,7 +68,7 @@ extension ImageGalleryPresenter: ImagePickerDelegate {
             
             
         }, completion: { success, error  in
-            
+            self.viewController?.reloadCollctionView()
         })
     }
 }

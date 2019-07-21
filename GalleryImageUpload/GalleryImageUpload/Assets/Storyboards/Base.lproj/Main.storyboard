@@ -54,7 +54,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.27290342846487381" green="0.37351083640530824" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.18727992960000001" green="0.52173195419999996" blue="0.81423305459999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="cfQ-6M-35A" firstAttribute="top" secondItem="b8U-uN-ea1" secondAttribute="top" constant="8" id="9Qo-dk-mdZ"/>
                                     <constraint firstAttribute="trailing" secondItem="cfQ-6M-35A" secondAttribute="trailing" constant="20" id="M5i-Gj-2qm"/>
@@ -75,9 +75,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Image Gallery" id="uBC-hJ-iyC"/>
+                    <navigationItem key="navigationItem" title="Image Gallery" id="uBC-hJ-iyC">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="fDG-Zx-dDX">
+                            <progressView key="customView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="i2V-XC-qD7">
+                                <rect key="frame" x="302" y="21" width="92" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="galleryCollectionView" destination="QHv-DQ-y7b" id="LFn-eK-Prp"/>
+                        <outlet property="progressView" destination="i2V-XC-qD7" id="cDC-gp-r78"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

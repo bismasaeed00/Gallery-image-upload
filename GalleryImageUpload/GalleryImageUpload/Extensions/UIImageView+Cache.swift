@@ -13,7 +13,12 @@ import AlamofireImage
 
 let imageCache = NSCache<NSString, UIImage>()
 extension UIImageView {
-    
+    /**
+    Load image from cache, if does not exist then load it from Url path and store it in the cache.
+    - Parameters:
+      - urlString: Image url string
+      - completion: Success block on the completion of the loading process
+    */
     func loadImageCacheWithUrlString(urlString: String,  completion: @escaping CompletionSuccess) {
         
         if let cachedImage = imageCache.object(forKey: urlString as NSString){
@@ -24,6 +29,7 @@ extension UIImageView {
         }
     }
     
+//    Load image from Firebase storage and store it into NSCache
     private func getImage(urlString: String, completion: @escaping CompletionSuccess) {
         
         Alamofire.request(urlString, method: .get).responseImage { response in
