@@ -16,10 +16,10 @@ class ImageGalleryPresenter : NSObject{
     let firebaseManager: FirebaseManager?
     var imageList: [ImageModel] = []
     
-    init(viewController: ImageGalleryViewController) {
+    init(viewController: ImageGalleryViewController, firebaseManager: FirebaseManager?) {
         self.viewController = viewController
         // Injecting storage and database references to FirebaseManager
-        self.firebaseManager = FirebaseManager.init(storage: Storage.storage(), databaseReference: Database.database().reference())
+        self.firebaseManager = firebaseManager
         super.init()
         self.imagePicker = ImagePicker(presentationController: self.viewController, delegate: self)
         

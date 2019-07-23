@@ -17,6 +17,9 @@
 		7C4498FE22E0656600D56EC1 /* ImageGalleryPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4498FD22E0656600D56EC1 /* ImageGalleryPresenterProtocol.swift */; };
 		7C44990022E066A000D56EC1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4498FF22E066A000D56EC1 /* ImagePicker.swift */; };
 		7C44990422E071D300D56EC1 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C44990322E071D300D56EC1 /* Text.swift */; };
+		7C4F555322E7280F00F9C9B0 /* ImageGalleryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4F555222E7280F00F9C9B0 /* ImageGalleryViewControllerTests.swift */; };
+		7C4F555522E72F9E00F9C9B0 /* ImagePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4F555422E72F9E00F9C9B0 /* ImagePickerTests.swift */; };
+		7C4F555722E7505600F9C9B0 /* FirebaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4F555622E7505600F9C9B0 /* FirebaseManagerTests.swift */; };
 		7C5D4B5222DDE59E0006860C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5D4B5122DDE59E0006860C /* AppDelegate.swift */; };
 		7C5D4B5722DDE59E0006860C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C5D4B5522DDE59E0006860C /* Main.storyboard */; };
 		7C5D4B5922DDE5A00006860C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C5D4B5822DDE5A00006860C /* Assets.xcassets */; };
@@ -57,6 +60,9 @@
 		7C4498FD22E0656600D56EC1 /* ImageGalleryPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryPresenterProtocol.swift; sourceTree = "<group>"; };
 		7C4498FF22E066A000D56EC1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7C44990322E071D300D56EC1 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		7C4F555222E7280F00F9C9B0 /* ImageGalleryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewControllerTests.swift; sourceTree = "<group>"; };
+		7C4F555422E72F9E00F9C9B0 /* ImagePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerTests.swift; sourceTree = "<group>"; };
+		7C4F555622E7505600F9C9B0 /* FirebaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManagerTests.swift; sourceTree = "<group>"; };
 		7C5D4B4E22DDE59E0006860C /* GalleryImageUpload.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GalleryImageUpload.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C5D4B5122DDE59E0006860C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C5D4B5622DDE59E0006860C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -267,7 +273,10 @@
 			isa = PBXGroup;
 			children = (
 				7C5D4B6822DDE5A00006860C /* Info.plist */,
+				7C4F555222E7280F00F9C9B0 /* ImageGalleryViewControllerTests.swift */,
 				2E76EAC822E45B8B00B8F76B /* ImageGalleryPresenterTests.swift */,
+				7C4F555422E72F9E00F9C9B0 /* ImagePickerTests.swift */,
+				7C4F555622E7505600F9C9B0 /* FirebaseManagerTests.swift */,
 			);
 			path = GalleryImageUploadTests;
 			sourceTree = "<group>";
@@ -531,6 +540,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C4F555722E7505600F9C9B0 /* FirebaseManagerTests.swift in Sources */,
+				7C4F555322E7280F00F9C9B0 /* ImageGalleryViewControllerTests.swift in Sources */,
+				7C4F555522E72F9E00F9C9B0 /* ImagePickerTests.swift in Sources */,
 				2E76EAC922E45B8B00B8F76B /* ImageGalleryPresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

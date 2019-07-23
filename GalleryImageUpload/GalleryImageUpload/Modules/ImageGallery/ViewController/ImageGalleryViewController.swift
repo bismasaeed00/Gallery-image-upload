@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class ImageGalleryViewController: UIViewController {
 
-    @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet private weak var galleryCollectionView: UICollectionView?
+    @IBOutlet weak var galleryCollectionView: UICollectionView?
     var presenter: ImageGalleryPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = ImageGalleryPresenter(viewController: self)
+        let firebaseManager = FirebaseManager.init(storage: Storage.storage(), databaseReference: Database.database().reference())
+        presenter = ImageGalleryPresenter(viewController: self, firebaseManager: firebaseManager)
         galleryCollectionView?.dataSource = presenter
         galleryCollectionView?.register(UINib(nibName: Text.CellIdentifiers.imageGalleryCell,
                                               bundle: nil),
@@ -36,6 +37,7 @@ class ImageGalleryViewController: UIViewController {
         
         layout.itemSize = cellSize
     }
+    
     func reloadCollctionView(){
         galleryCollectionView?.reloadData()
     }

@@ -25,6 +25,6 @@ class ImageGalleryPresenterTests: XCTestCase {
     }
 
     func testExample() {
-        
+        let setRootExpectation: XCTestExpectation
     }
 }
