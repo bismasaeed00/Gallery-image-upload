@@ -1,11 +1,16 @@
 # Gallery-image-upload
 
-## Design Pattern: MVP
-## Tested only on simulator
+## Reason of selection:
+As a mobile developer, I don't usually interect with backend so I have choosen a task which was less focused on Backend and more on Frontend. 
 
-### I have set database rules to accept without authentication.
-### Error on upload, just notifying user to unsuccessful upload.
-### It should show proper error message which is received from the server.
+## Test Environment
+Xcode Simulator.
 
-Todo:
-Crop and rotate image
+## Design Pattern
+MVP
+
+## Backend
+I have used Firebase storage for this project.
+For test purposes, there are no read/write rules for authentication. Anyone can read and write the data.
+
+
