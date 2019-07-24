@@ -26,9 +26,11 @@ class ImageGalleryPresenter : NSObject{
         fetchGalleryData()
     }
     
+    /**
+     Fetch data from Firebase database.
+     */
     func fetchGalleryData() {
         firebaseManager?.fetchAllImages(completion: { imageModel, error in
-            
             guard let image = imageModel else { return }
             self.imageList.append(image)
             self.imageList.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedDescending })

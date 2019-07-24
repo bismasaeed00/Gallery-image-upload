@@ -11,20 +11,28 @@ import XCTest
 
 class ImageGalleryPresenterTests: XCTestCase {
 
-//    System under test
-    var sut: ImageGalleryPresenter!
+    var presenter: ImageGalleryPresenter!
     override func setUp() {
         super.setUp()
         let viewController = ImageGalleryViewController()
-        sut = ImageGalleryPresenter(viewController: viewController)
+        let firebaseManager = FirebaseManager.init()
+        presenter = ImageGalleryPresenter(viewController: viewController, firebaseManager: firebaseManager)
     }
 
     override func tearDown() {
-        sut = nil
+        presenter = nil
         super.tearDown()
     }
 
-    func testExample() {
-        let setRootExpectation: XCTestExpectation
+    func testImagePickerSetup() {
+        XCTAssertNotNil(presenter.imagePicker)
+    }
+    
+    func testImageGalleryViewControllerSetup() {
+        XCTAssertNotNil(presenter.viewController)
+    }
+    
+    func testFirebaseManagerSetup() {
+        XCTAssertNotNil(presenter.firebaseManager)
     }
 }

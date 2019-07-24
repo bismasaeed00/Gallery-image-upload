@@ -19,7 +19,13 @@ class ImagePicker: NSObject {
     private weak var presentationController: UIViewController?
     private weak var delegate: ImagePickerDelegate?
     
-    init(presentationController: UIViewController?, delegate: ImagePickerDelegate) {
+    /**
+     Init with presentation controller and delegate.
+     - Parameters:
+        - presentationController: View controller to present the image picker
+        - delegate: Delegate to
+     */
+    init(presentationController: UIViewController?, delegate: ImagePickerDelegate?) {
         self.pickerController = UIImagePickerController()
         super.init()
         self.presentationController = presentationController
@@ -36,7 +42,7 @@ class ImagePicker: NSObject {
      */
     func present(from sourceView: UIView) {
         
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Image Gallery", message: "Please choose the source of Image", preferredStyle: .actionSheet)
         
         if let action = self.action(for: .camera, title: "Take photo") {
             alertController.addAction(action)
@@ -73,7 +79,7 @@ extension ImagePicker: UIImagePickerControllerDelegate {
         self.pickerController(picker, didSelect: nil)
     }
     
-    //  Getting the selected image from picker, as editing is enabled, I am getting editiedImage from the Media
+    //  Getting the selected image from picker, as editing is enabled, I am getting the editiedImage from the MediaInfo
     public func imagePickerController(_ picker: UIImagePickerController,
                                       didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else {

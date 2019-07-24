@@ -16,7 +16,7 @@ class ImageGalleryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let firebaseManager = FirebaseManager.init(storage: Storage.storage(), databaseReference: Database.database().reference())
+        let firebaseManager = FirebaseManager.init()
         presenter = ImageGalleryPresenter(viewController: self, firebaseManager: firebaseManager)
         galleryCollectionView?.dataSource = presenter
         galleryCollectionView?.register(UINib(nibName: Text.CellIdentifiers.imageGalleryCell,
@@ -38,6 +38,9 @@ class ImageGalleryViewController: UIViewController {
         layout.itemSize = cellSize
     }
     
+    /**
+     Reload the collection view
+     */
     func reloadCollctionView(){
         galleryCollectionView?.reloadData()
     }
