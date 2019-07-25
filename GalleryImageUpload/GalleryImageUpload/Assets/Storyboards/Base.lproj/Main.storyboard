@@ -75,9 +75,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Image Gallery" id="uBC-hJ-iyC"/>
+                    <navigationItem key="navigationItem" title="Image Gallery" id="uBC-hJ-iyC">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="qWW-i7-nKl">
+                            <progressView key="customView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="161-6j-Lof">
+                                <rect key="frame" x="302" y="21" width="92" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="galleryCollectionView" destination="QHv-DQ-y7b" id="LFn-eK-Prp"/>
+                        <outlet property="progressView" destination="161-6j-Lof" id="jKR-9o-7vV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -23,7 +23,6 @@ class ImageGalleryCell: UICollectionViewCell {
     /// Setting up all the views to fresh state
     private func makeFreshView() {
         imageView?.image = nil
-        loadingMode(loadingMode: false)
     }
     
     /// Enable or Disable loading mode

@@ -43,4 +43,9 @@ class ImageGalleryViewControllerTests: XCTestCase {
     func testCollectionViewLinked() {
         XCTAssertNotNil(viewController.galleryCollectionView, "gallerycollectionview outlet is nil")
     }
+    
+    // if progress view is linked with the outlet
+    func testProgressViewLinked() {
+        XCTAssertNotNil(viewController.galleryCollectionView, "progressView outlet is nil")
+    }
 }

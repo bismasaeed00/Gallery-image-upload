@@ -67,9 +67,11 @@ extension ImageGalleryPresenter: ImagePickerDelegate {
         
         let uplaodPath = Text.Image.imageFolderName + timeStamp + Text.Image.imageExtension
         firebaseManager?.uploadDataToFirebase(dataToUpload: imageData, uploadPath: uplaodPath, timeStamp: timeStamp, progress: { progress in
-            
+            let progressValue = Float(progress ?? 0)
+            self.viewController?.setProgressView(value: progressValue, show: true)
             
         }, completion: { success, error  in
+            self.viewController?.setProgressView(value: 0, show: false)
             self.viewController?.reloadCollctionView()
         })
     }

@@ -11,7 +11,8 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-let imageCache = NSCache<NSString, UIImage>()
+let imageCache = AutoPurgingImageCache( memoryCapacity: 111_111_111, preferredMemoryUsageAfterPurge: 90_000_000)
+
 extension UIImageView {
     /**
     Load image from cache, if does not exist then load it from Url path and store it in the cache.
@@ -21,8 +22,8 @@ extension UIImageView {
     */
     func loadImageCacheWithUrlString(urlString: String,  completion: @escaping CompletionSuccess) {
         
-        if let cachedImage = imageCache.object(forKey: urlString as NSString){
-            self.image = cachedImage
+        if let image = imageCache.image(withIdentifier: urlString) {
+            self.image = image
             completion(true, nil)
         } else {
             getImage(urlString: urlString, completion: completion)
@@ -32,15 +33,15 @@ extension UIImageView {
 //    Load image from Firebase storage and store it into NSCache
     private func getImage(urlString: String, completion: @escaping CompletionSuccess) {
         
-        Alamofire.request(urlString, method: .get).responseImage { response in
-            if let downloadedImage = response.result.value {
-                imageCache.setObject(downloadedImage, forKey: urlString as NSString)
-                self.image = downloadedImage
-                completion(true, nil)
-            }else{
-                self.image = nil
+        Alamofire.request(urlString).responseImage { response in
+            guard let imageData = response.data, let image = UIImage(data: imageData, scale: 1.0) else {
                 completion(false, response.error)
+                return
             }
+            
+            imageCache.add(image, withIdentifier: urlString)
+            self.image = image
+            completion(true, nil)
         }
     }
 }

@@ -11,8 +11,10 @@ import Firebase
 
 class ImageGalleryViewController: UIViewController {
 
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var galleryCollectionView: UICollectionView?
     var presenter: ImageGalleryPresenter?
+    let cellHeight: CGFloat = 150
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,7 @@ class ImageGalleryViewController: UIViewController {
                                               bundle: nil),
                                         forCellWithReuseIdentifier: Text.CellIdentifiers.imageGalleryCell)
         setCollectionViewLayout()
+        setProgressView(value: 0, show: false)
     }
     
     private func setCollectionViewLayout() {
@@ -31,7 +34,6 @@ class ImageGalleryViewController: UIViewController {
         let layout = galleryCollectionView?.collectionViewLayout as! UICollectionViewFlowLayout
         let screenWidth = UIScreen.main.bounds.size.width
         let paddingSpace = layout.minimumInteritemSpacing
-        let cellHeight: CGFloat = 150
         let useableWidth = screenWidth - paddingSpace
         let cellSize = CGSize(width: useableWidth, height: cellHeight)
         
@@ -43,6 +45,14 @@ class ImageGalleryViewController: UIViewController {
      */
     func reloadCollctionView(){
         galleryCollectionView?.reloadData()
+    }
+    
+    /**
+     Update progress view
+     */
+    func setProgressView(value: Float, show: Bool){
+        progressView.isHidden = !show
+        progressView.setProgress(value, animated: true)
     }
     
     //MARK: User Actions
